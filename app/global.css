@@ -1,0 +1,31 @@
+::selection {
+}
+
+:root {
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
+  html {
+  }
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
