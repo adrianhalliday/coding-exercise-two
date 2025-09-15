@@ -58,7 +58,7 @@ export default function TextImage({
 					<div className="caption font--regular">{image.caption}</div>
 				)}
 			</div>
-			<div ref={triggerEl} style={{ height: '1px', position: 'absolute', top: '-30svh' }} />
+			<div ref={triggerEl} className="c_text-image--scroll-trigger" />
 		</div>
 	)
 }

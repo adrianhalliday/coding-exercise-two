@@ -63,6 +63,16 @@
 		}
 	}
 
+	&--scroll-trigger {
+		height: 1px;
+		position: absolute;
+		top: -60svh;
+		
+		@media (min-width: $breakpoint-lg) {
+			top: '-35svh';
+		}
+	}
+
 	@media (min-width: $breakpoint-xl) {
 		min-height: 100svh;
 		grid-template-rows: unset;
