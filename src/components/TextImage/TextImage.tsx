@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import { scrollActiveRef } from '@/hooks/scrollActiveRef'
-import { wrapText } from '@/hooks/wrapText'
+import { useScrollActiveRef } from '@/hooks/useScrollActiveRef'
+import { useWrapText } from '@/hooks/useWrapText'
 import './TextImage.scss'
 
 type Theme = "navy" | "light-grey" | "lime-green" | "yellow" | "white" | "paradise-pink";
@@ -27,7 +27,7 @@ export default function TextImage({
 	},
 	content = "Placeholder component content."
 }: ComponentProps) {
-	const { scrollActive, triggerEl } = scrollActiveRef();
+	const { scrollActive, triggerEl } = useScrollActiveRef();
 	const scrollContainer = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		if (scrollActive && scrollContainer.current) {
@@ -41,7 +41,7 @@ export default function TextImage({
 		.map(([key, url]) => `${url} ${key !== 'base' ? `${key}w` : ''}`)
 		.join(', ');
 
-	const html: string = wrapText("word","span",content);
+	const html: string = useWrapText("word","span",content);
 
 	return (
 		<div ref={scrollContainer} className={`c_text-image ${alignment ?? ''}`}>

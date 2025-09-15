@@ -6,7 +6,7 @@ import Icon from '@/fragments/Icon'
 import Button from '@/fragments/Button'
 import Logo from '@/fragments/Logo'
 import { baseUrl } from '@/app/sitemap'
-import { scrollActiveRef } from '@/hooks/scrollActiveRef'
+import { useScrollActiveRef } from '@/hooks/useScrollActiveRef'
 import './Header.scss'
 
 const headerProps = {
@@ -31,7 +31,7 @@ export function Header() {
     setMenuOpen(!menuOpen);
   }
 
-  const { scrollActive, triggerEl } = scrollActiveRef();
+  const { scrollActive, triggerEl } = useScrollActiveRef();
   const scrollActiveClass = useMemo(() => {
     return scrollActive ? 'scroll-active' : null;
   }, [scrollActive]);

@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import { scrollActiveRef } from '@/hooks/scrollActiveRef'
+import { useScrollActiveRef } from '@/hooks/useScrollActiveRef'
 import './Carousel.scss'
 
 import ButtonProps from "@/fragments/Button"
@@ -44,7 +44,7 @@ export default function Carousel({
 	heading = "Placeholder heading",
 	cta = null
 }: ComponentProps) {
-	const { scrollActive, triggerEl } = scrollActiveRef();
+	const { scrollActive, triggerEl } = useScrollActiveRef();
 	const scrollContainer = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		if (scrollActive && scrollContainer.current) {

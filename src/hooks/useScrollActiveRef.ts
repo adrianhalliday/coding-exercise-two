@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const scrollActiveRef = () => {
+export const useScrollActiveRef = () => {
 	const [scrollActive, setScrollActive] = useState<boolean>(false);
 	const triggerEl = useRef<HTMLDivElement>(null);
   

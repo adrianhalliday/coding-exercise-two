@@ -1,4 +1,4 @@
-export const wrapText = (
+export const useWrapText = (
 	mode: "word" | "line",
 	element: "span" | "div",
 	textString: string
