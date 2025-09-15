@@ -21,9 +21,8 @@ export default function Footer() {
       <ul className="footer--nav">
         {Object.entries(footerProps.navItems).map(([path, label]) => {
           return (
-            <li>
+            <li key={path}>
               <Link
-                key={path}
                 href={path}
                 className="footer--link font--regular"
               >
