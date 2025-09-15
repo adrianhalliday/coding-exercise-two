@@ -1,0 +1,157 @@
+@import "normalize.css";
+
+$c-black: #000;
+$c-light-green: #9ebe53;
+$c-light-grey: #f9f9f9;
+$c-navy: #1b1947;
+$c-pink: #de5068;
+$c-white: #fff;
+$c-yellow: #ebe772;
+
+:root {
+  // Utopia font size tokens
+  /* @link https://utopia.fyi/type/calculator?c=360,18,1.2,1600,22,1.375,6,2,&s=0.75|0.47|0.25,1.23|1.85|2.4|4|6,s-l|m-xl&g=s,l,xl,12 */
+  --fs--2: clamp(0.7273rem, 0.7969rem + -0.0696vw, 0.7813rem);
+  --fs--1: clamp(0.9375rem, 0.9194rem + 0.0806vw, 1rem);
+  --fs-0: clamp(1.125rem, 1.0524rem + 0.3226vw, 1.375rem);
+  --fs-1: clamp(1.35rem, 1.193rem + 0.6976vw, 1.8906rem);
+  --fs-2: clamp(1.62rem, 1.3356rem + 1.264vw, 2.5996rem);
+  --fs-3: clamp(1.944rem, 1.4706rem + 2.1038vw, 3.5745rem);
+  --fs-4: clamp(2.3328rem, 1.5832rem + 3.3317vw, 4.9149rem);
+  --fs-5: clamp(2.7994rem, 1.6501rem + 5.1079vw, 6.758rem);
+  --fs-6: clamp(3.3592rem, 1.6368rem + 7.6555vw, 9.2922rem);
+
+  // Utopia spacing tokens
+  /* @link https://utopia.fyi/space/calculator?c=360,18,1.2,1600,22,1.25,6,2,&s=0.75|0.47|0.25,1.23|1.85|2.4|4|6,s-l|m-xl&g=s,l,xl,12 */
+  --space-3xs: clamp(0.3125rem, 0.2944rem + 0.0806vw, 0.375rem);
+  --space-2xs: clamp(0.5rem, 0.4637rem + 0.1613vw, 0.625rem);
+  --space-xs: clamp(0.875rem, 0.8206rem + 0.2419vw, 1.0625rem);
+  --space-s: clamp(1.125rem, 1.0524rem + 0.3226vw, 1.375rem);
+  --space-m: clamp(1.375rem, 1.2843rem + 0.4032vw, 1.6875rem);
+  --space-l: clamp(2.0625rem, 1.9173rem + 0.6452vw, 2.5625rem);
+  --space-xl: clamp(2.6875rem, 2.506rem + 0.8065vw, 3.3125rem);
+  --space-2xl: clamp(4.5rem, 4.2097rem + 1.2903vw, 5.5rem);
+  --space-3xl: clamp(6.75rem, 6.3145rem + 1.9355vw, 8.25rem);
+
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.3125rem, 0.2218rem + 0.4032vw, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.3367rem + 0.7258vw, 1.0625rem);
+  --space-xs-s: clamp(0.875rem, 0.7298rem + 0.6452vw, 1.375rem);
+  --space-s-m: clamp(1.125rem, 0.9617rem + 0.7258vw, 1.6875rem);
+  --space-m-l: clamp(1.375rem, 1.0302rem + 1.5323vw, 2.5625rem);
+  --space-l-xl: clamp(2.0625rem, 1.6996rem + 1.6129vw, 3.3125rem);
+  --space-xl-2xl: clamp(2.6875rem, 1.871rem + 3.629vw, 5.5rem);
+  --space-2xl-3xl: clamp(4.5rem, 3.4113rem + 4.8387vw, 8.25rem);
+
+  /* Custom pairs */
+  --space-s-l: clamp(1.125rem, 0.7077rem + 1.8548vw, 2.5625rem);
+  --space-m-xl: clamp(1.375rem, 0.8125rem + 2.5vw, 3.3125rem);
+
+  // Colours
+  --c-black: #{$c-black};
+  --c-light-green: #{$c-light-green};
+  --c-light-grey: #{$c-light-grey};
+  --c-navy: #{$c-navy};
+  --c-pink: #{$c-pink};
+  --c-white: #{$c-white};
+  --c-yellow: #{$c-yellow};
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+}
+
+/* Remove Safari input shadow on mobile */
+input[type='text'],
+input[type='email'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+.font {
+  &--regular {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: var(--fs-0);
+    line-height: 144%;
+
+    &-italic {
+      font-style: italic;
+    }
+  }
+
+  &--bold {
+    font-family: "Lato", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: var(--fs-0);
+    line-height: 144%;
+
+    &-italic {
+      font-style: italic;
+    }
+  }
+}
+
+.theme {
+  &--light-green {
+    background-color: var(--c-light-green);
+    color: var(--c-navy);
+    --theme--button-bg: var(--c-light-green);
+    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
+    --theme--button-inner: var(--c-white);
+  }
+  &--light-grey {
+    background-color: var(--c-light-grey);
+    color: var(--c-navy);
+    --theme--button-bg: var(--c-light-green);
+    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
+    --theme--button-inner: var(--c-white);
+  }
+  &--navy {
+    background-color: var(--c-navy);
+    color: var(--c-white);
+    --theme--button-bg: var(--c-pink);
+    --theme--button-hover: color.adjust($c-pink, $lightness: -10%);
+    --theme--button-inner: var(--c-white);
+  }
+  &--pink {
+    background-color: var(--c-pink);
+    color: var(--c-white);
+    --theme--button-bg: var(--c-white);
+    --theme--button-hover: color.adjust($c-pink, $lightness: +85%);
+    --theme--button-inner: var(--c-pink);
+  }
+  &--white {
+    background-color: var(--c-white);
+    color: var(--c-navy);
+    --theme--button-bg: var(--c-light-green);
+    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
+    --theme--button-inner: var(--c-white);
+  }
+  &--yellow {
+    background-color: var(--c-yellow);
+    color: var(--c-navy);
+    --theme--button-bg: var(--c-light-green);
+    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
+    --theme--button-inner: var(--c-white);
+  }
+}

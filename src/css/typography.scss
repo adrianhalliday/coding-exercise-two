@@ -1,0 +1,22 @@
+h1,h2,h3,h4,h5,h6 {
+	margin-top: 0;
+	margin-block-start: 0;
+}
+
+h1 {
+	font-size: var(--fs-5);
+	line-height: .94;
+	margin-bottom: var(--space-l);
+}
+
+h2 {
+	font-size: var(--fs-3);
+	line-height: 1;
+	margin-bottom: var(--space-m);
+}
+
+h3 {
+	font-size: var(--fs-1);
+	line-height: 1.65;
+	margin-bottom: var(--space-s);
+}
