@@ -1,0 +1,140 @@
+.c_carousel {
+	--container-width: 85vw;
+	--slide-margin: 2em;
+	--slide-active: 0;
+
+	&[data-active="1"] {
+		--slide-active: 1;
+	}
+	&[data-active="2"] {
+		--slide-active: 2;
+	}
+	&[data-active="3"] {
+		--slide-active: 3;
+	}
+	&[data-active="4"] {
+		--slide-active: 4;
+	}
+	&[data-active="5"] {
+		--slide-active: 5;
+	}
+	&[data-active="6"] {
+		--slide-active: 6;
+	}
+	&[data-active="7"] {
+		--slide-active: 7;
+	}
+
+	--slide-width: var(--container-width);
+	--slide-width-2: calc((var(--container-width) - var(--slide-margin)) / 2);
+	--slide-width-3: calc(
+		(var(--container-width) - calc(var(--slide-margin) * 2)) / 3
+	);
+	--slide-width-4: calc(
+		(var(--container-width) - calc(var(--slide-margin) * 3)) / 4
+	);
+
+	--transform-2: calc(var(--slide-width-2) + var(--slide-margin));
+	--transform-3: calc(var(--slide-width-3) + var(--slide-margin));
+	--transform-4: calc(var(--slide-width-4) + var(--slide-margin));
+
+	&[data-per-view="2"] {
+		--max-slides: 6;
+		--slides-per-view: 1;
+		--slide-width: var(--slide-width);
+		--slide-transform: var(--transform);
+		--container-height: calc(var(--slide-width) * 1.3); 
+		// Height is fixed (however relative) because we're not using JS magic to set static heights relative to the height of absolutely positioned children
+		
+		@media (min-width: 700px) {
+			--slides-per-view: 2;
+			--slide-width: var(--slide-width-2);
+			--slide-transform: var(--transform-2);
+			--container-height: calc(var(--slide-width-2) * 1.3);
+		}
+	}
+
+	&[data-per-view="3"] {
+		--max-slides: 6;
+		--slides-per-view: 2;
+		--slide-width: var(--slide-width-2);
+		--slide-transform: var(--transform-2);
+		--container-height: calc(var(--slide-width) * 1.3);
+
+		@media (min-width: 700px) {
+			--slides-per-view: 3;
+			--slide-width: var(--slide-width-3);
+			--slide-transform: var(--transform-3);
+			--container-height: calc(var(--slide-width-3) * 1.3);
+		}
+	}
+
+	&[data-per-view="4"] {
+		--max-slides: 8;
+		--slides-per-view: 2;
+		--slide-width: var(--slide-width-2);
+		--slide-transform: var(--transform-2);
+		--container-height: calc(var(--slide-width) * 1.3);
+
+		@media (min-width: 700px) {
+			--slides-per-view: 3;
+			--slide-width: var(--slide-width-3);
+			--slide-transform: var(--transform-3);
+			--container-height: calc(var(--slide-width-3) * 1.3);
+		}
+
+		@media (min-width: 1200px) {
+			--slides-per-view: 4;
+			--slide-width: var(--slide-width-4);
+			--slide-transform: var(--transform-4);
+			--container-height: calc(var(--slide-width-4) * 1.3);
+		}
+	}
+
+	&--header, &--footer {
+		display: flex;
+		width: var(--container-width);
+		margin-inline: auto;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+	&--header {
+		padding-top: var(--space-3xl);
+	}
+	&--footer {
+		padding-bottom: var(--space-3xl);
+	}
+
+	&--container {
+		margin-inline: auto;
+		display: block;
+		width: var(--container-width);
+		position: relative;
+		height: var(--container-height);
+		overflow: hidden;
+	}
+
+	&--inner {
+		position: absolute;
+		display: flex;
+		flex-wrap: nowrap;
+		gap: var(--slide-margin);
+		width: calc(
+			var(--slide-transform) * var(--max-slides) - var(--slide-margin)
+		);
+		left: calc(var(--slide-transform) * var(--slide-active) * -1);
+		top: 0;
+		transition: left 0.75s cubic-bezier(0.78, 0, 0.22, 1);
+
+		img {
+			width: 100%;
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	&--slide {
+		flex-basis: var(--slide-width);
+		height: var(--container-height);
+	}
+}

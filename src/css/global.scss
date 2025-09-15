@@ -1,12 +1,6 @@
+@use 'sass:color';
 @import "normalize.css";
-
-$c-black: #000;
-$c-light-green: #9ebe53;
-$c-light-grey: #f9f9f9;
-$c-navy: #1b1947;
-$c-pink: #de5068;
-$c-white: #fff;
-$c-yellow: #ebe772;
+@import "@/css/variables";
 
 :root {
   // Utopia font size tokens
@@ -44,17 +38,23 @@ $c-yellow: #ebe772;
   --space-2xl-3xl: clamp(4.5rem, 3.4113rem + 4.8387vw, 8.25rem);
 
   /* Custom pairs */
+  --space-xs-m: clamp(0.875rem, 0.6391rem + 1.0484vw, 1.6875rem);
   --space-s-l: clamp(1.125rem, 0.7077rem + 1.8548vw, 2.5625rem);
   --space-m-xl: clamp(1.375rem, 0.8125rem + 2.5vw, 3.3125rem);
 
   // Colours
   --c-black: #{$c-black};
-  --c-light-green: #{$c-light-green};
+  --c-lime-green: #{$c-lime-green};
   --c-light-grey: #{$c-light-grey};
   --c-navy: #{$c-navy};
-  --c-pink: #{$c-pink};
+  --c-paradise-pink: #{$c-paradise-pink};
   --c-white: #{$c-white};
   --c-yellow: #{$c-yellow};
+  --c-shadow: #{$c-shadow};
+
+  --button-icon-s: 16px;
+  --button-icon-m: 18px;
+  --button-icon-l: 22px;
 }
 
 html {
@@ -85,73 +85,101 @@ table {
   text-wrap: balance;
 }
 
-.font {
-  &--regular {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: var(--fs-0);
-    line-height: 144%;
-
-    &-italic {
-      font-style: italic;
-    }
-  }
-
-  &--bold {
-    font-family: "Lato", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: var(--fs-0);
-    line-height: 144%;
-
-    &-italic {
-      font-style: italic;
-    }
-  }
-}
-
 .theme {
-  &--light-green {
-    background-color: var(--c-light-green);
+  &--lime-green {
+    background-color: var(--c-lime-green);
     color: var(--c-navy);
-    --theme--button-bg: var(--c-light-green);
-    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
-    --theme--button-inner: var(--c-white);
+
+    p, a, li {
+      color: var(--c-navy);
+    }
+    a:visited {
+      color: var(--c-navy);
+    }
+
+    --theme--button-bg: var(--c-lime-green);
+    --theme--button-hover: #{color.adjust($c-lime-green, $lightness: -20%)};
+    --theme--button-inner: var(--c-navy);
+    --theme--button-inner-hover: var(--c-white);
   }
   &--light-grey {
     background-color: var(--c-light-grey);
     color: var(--c-navy);
-    --theme--button-bg: var(--c-light-green);
-    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
-    --theme--button-inner: var(--c-white);
+
+    p, a, li {
+      color: var(--c-navy);
+    }
+    a:visited {
+      color: var(--c-navy);
+    }
+
+    --theme--button-bg: var(--c-lime-green);
+    --theme--button-hover: #{color.adjust($c-lime-green, $lightness: -20%)};
+    --theme--button-inner: var(--c-navy);
+    --theme--button-inner-hover: var(--c-white);
   }
   &--navy {
     background-color: var(--c-navy);
     color: var(--c-white);
-    --theme--button-bg: var(--c-pink);
-    --theme--button-hover: color.adjust($c-pink, $lightness: -10%);
+
+    p, a, li {
+      color: var(--c-white);
+    }
+    a:visited {
+      color: var(--c-white);
+    }
+
+    --theme--button-bg: var(--c-paradise-pink);
+    --theme--button-hover: #{color.adjust($c-paradise-pink, $lightness: -20%)};
     --theme--button-inner: var(--c-white);
+    --theme--button-inner-hover: var(--c-white);
   }
-  &--pink {
-    background-color: var(--c-pink);
+  &--paradise-pink {
+    background-color: var(--c-paradise-pink);
     color: var(--c-white);
+
+    p, a, li {
+      color: var(--c-white);
+    }
+    a:visited {
+      color: var(--c-white);
+    }
+
     --theme--button-bg: var(--c-white);
-    --theme--button-hover: color.adjust($c-pink, $lightness: +85%);
-    --theme--button-inner: var(--c-pink);
+    --theme--button-hover: #{color.adjust($c-paradise-pink, $lightness: +85%)};
+    --theme--button-inner: var(--c-paradise-pink);
+    --theme--button-inner-hover: var(--c-paradise-pink);
   }
   &--white {
     background-color: var(--c-white);
     color: var(--c-navy);
-    --theme--button-bg: var(--c-light-green);
-    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
-    --theme--button-inner: var(--c-white);
+
+    p, a, li {
+      color: var(--c-navy);
+    }
+    a:visited {
+      color: var(--c-navy);
+    }
+
+    --theme--button-bg: var(--c-lime-green);
+    --theme--button-hover: #{color.adjust($c-lime-green, $lightness: -20%)};
+    --theme--button-inner: var(--c-navy);
+    --theme--button-inner-hover: var(--c-white);
   }
   &--yellow {
     background-color: var(--c-yellow);
     color: var(--c-navy);
-    --theme--button-bg: var(--c-light-green);
-    --theme--button-hover: color.adjust($c-light-green, $lightness: -10%);
-    --theme--button-inner: var(--c-white);
+
+    p, a, li {
+      color: var(--c-navy);
+    }
+    a:visited {
+      color: var(--c-navy);
+    }
+
+    --theme--button-bg: var(--c-lime-green);
+    --theme--button-hover: #{color.adjust($c-lime-green, $lightness: -20%)};
+    --theme--button-inner: var(--c-navy);
+    --theme--button-inner-hover: var(--c-white);
   }
 }

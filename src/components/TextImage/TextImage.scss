@@ -1,3 +1,5 @@
+@import '@/css/variables';
+
 .c_text-image {
 	position: relative;
 	display: grid;
@@ -12,12 +14,12 @@
 		align-items: center;
 		padding: max(60px, 6.25vw);
 
-		@media (min-width: 1280px) {
+		@media (min-width: $breakpoint-lg) {
 			padding-block: 0;
 		}
 
 		p {
-			font-size: var(--fs-5);
+			font-size: var(--fs-4);
 			line-height: 1.08;
 			max-width: 12ch;
 
@@ -41,7 +43,7 @@
 				}
 			}
 
-			@media (min-width: 1280px) {
+			@media (min-width: $breakpoint-lg) {
 				font-size: var(--fs-4);
 			}
 		}
@@ -61,7 +63,7 @@
 		}
 	}
 
-	@media (min-width: 1280px) {
+	@media (min-width: $breakpoint-xl) {
 		min-height: 100svh;
 		grid-template-rows: unset;
 		grid-template-columns: 1fr 1fr;

@@ -1,23 +1,52 @@
+@use 'sass:color';
+@import '@/css/variables';
+
+
 .header {
+	--special-hover-color-1: #{color.adjust($c-navy, $lightness: +40%, $saturation: -30%)};
+	--special-hover-color-2: #{color.adjust($c-navy, $lightness: +30%, $saturation: -40%)};
+
 	position: fixed;
 	top: 0;
 	inset-inline: 0;
-	padding: var(--space-m) var(--space-m);
+	padding: var(--space-s-m);
 	background-color: var(--c-navy);
 	z-index: 100;
 	
 	&.transparent {
 		background-color: transparent;
+		background-image: linear-gradient(180deg, rgba(40, 42, 36, 0.6) 0%, rgba(40, 42, 36, 0) 100%);
+		transition: background-image 0.5s ease-in-out;
+
+		&.scroll-active {
+			background-image: linear-gradient(180deg, rgba(40, 42, 36, 0) 0%, rgba(40, 42, 36, 0) 100%);
+		}
+		
+		&:not(.scroll-active):has(.header--menu-mobile:not(.active)) {
+			.header--container {
+				transition-delay: .82s;
+			}
+		}
+		
+		&:not(.scroll-active):has(.header--menu-mobile.active) {
+			.header--container {
+				transition-delay: 0s;
+				background-color: var(--c-navy);
+			}
+		}
 	}
 	
 	&--container {
 		display: flex;
+		position: relative;
 		align-items: baseline;
-		gap: 2em;
+		gap: var(--space-s);
+		@media (min-width: $breakpoint-lg) { gap: var(--space-l); }
 		justify-content: space-between;
 		border-radius: var(--space-xl);
-		padding: var(--space-s);
-		transition: background-color 0.3s ease;
+		padding: var(--space-s-m);
+		transition: background-color 0.5s ease-in-out;
+		z-index: 100;
 
 		.transparent & {
 			background-color: transparent;
@@ -30,34 +59,163 @@
 	
 	&--logo {
 		align-self: center;
-		width: 184px;
-		height: 32px;
+		width: min(24vw,184px);
+
+		svg {
+			width: 100%;
+			height: auto;
+		}
 	}
 	
 	&--nav {
 		flex: 1;
-    	justify-content: flex-end;
 		display: flex;
 		align-items: baseline;
-		gap: 2em;
+    	justify-content: center;
+
+		@media (min-width: $breakpoint-lg) {
+			justify-content: flex-end;
+		}
 	}
 	
-	&--menu {
-		display: flex;
+	$total: 5;
+
+	&--menu-mobile {
+		position: absolute;
+		top: var(--space-s-m);
+    	inset-inline: var(--space-s-m);
+		border-radius: var(--space-xl);
+		background-color: var(--c-lime-green);
+		z-index: -1;
+		height: calc((var(--space-2xs) + var(--space-s-m)) * 2 + var(--fs--1));
+		transition: height 0.72s cubic-bezier(0.79,0.14,0.15,0.86), opacity 0.1s ease 0.72s;
+
+		@media (min-width: $breakpoint-lg) {
+			display: none;
+		}
+
+		.transparent & { 
+			opacity: 0;
+
+			&.active {
+				opacity: 1;
+				transition: opacity 0.1s ease 0.5s, height 0.72s cubic-bezier(0.79,0.14,0.15,0.86) 0.6s;
+			}
+		}
+
+		.transparent.scroll-active & {
+			&.active {
+				opacity: 1;
+				transition: opacity 0.1s ease, height 0.72s cubic-bezier(0.79,0.14,0.15,0.86) 0.1s;
+			}
+		}
+
+		&.active {
+			height: calc(((var(--space-2xs) + var(--space-s-m)) * 2 + var(--fs--1)) * ($total + 1));
+		}
+
+		&--link {
+			position: absolute;
+			inset-inline: 0;
+			height: calc((var(--space-2xs) + var(--space-s-m)) * 2 + var(--fs--1));
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			border-radius: var(--space-xl);
+			background-color: var(--c-lime-green);
+			font-size: var(--fs-1);
+			transition: top 0.82s cubic-bezier(0.79,0.14,0.15,0.86);
+			color: var(--c-navy);
+			text-transform: uppercase;
+			text-decoration: none;
+			top: 0;
+
+			&:not(:last-child)::after {
+				content: "";
+				position: absolute;
+				top: 100%;
+				width: 100%;
+				height: 2px;
+				background-color: transparent;
+				transition: background-color 0.3s ease-out;
+			}
+
+			$delay: 10ms;
+
+			@for $i from 1 through $total {
+				&:nth-child(#{$i}) {
+					z-index: calc((#{$total} * 2) - ($total * #{$i}));
+				}
+			}
+			
+			.active & {
+				@for $i from 1 through $total {
+					&:nth-child(#{$i}) {
+						top: calc(#{$i} * (100% / 6));
+						transition-delay: calc(#{$delay} * #{$i});
+					}
+				}
+				&:not(:last-child)::after {
+					background-color: #{color.adjust($c-lime-green, $lightness: -5%, $saturation: -10%)};
+					transition-delay: .52s;
+					transition-timing-function: ease-in;
+				}
+			}
+		}
+
+		&--trigger {
+			display: inline-flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			align-items: baseline;
+			gap: var(--space-3xs);
+			color: var(--c-white);
+			text-transform: uppercase;
+			font-size: var(--fs--2);
+			svg path { fill: var(--c-white); }
+
+			@media (min-width: $breakpoint-lg) {
+				display: none;
+			}
+
+			svg {
+				align-self: center;
+				margin-top: -3px; // NOT ideal but without longer to get the right asset for the job, some hacks are necessary
+			}
+		}
+	}
+
+	&--menu-desktop {
+		display: none;
+		@media (min-width: $breakpoint-lg) {
+			display: flex;
+		}
 		align-items: baseline;
-		gap: 30px;
+		gap: var(--space-l);
 		list-style: none;
 	}
 	
 	&--link {
 		text-decoration: none;
-		color: var(--c-white);
-		font-size: var(--fs-0);
+		font-size: var(--fs--1);
+		@media (min-width: $breakpoint-xl) {
+			font-size: var(--fs-0);
+		}
 		font-weight: 500;
 		transition: color 0.2s;
+		cursor: pointer;
+		
+		color: transparent;
+		background-clip: text;
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--c-white) 0%,
+			var(--c-white) 100%,
+		);
 
 		&:hover { 
-			
+			animation: textHover .4s cubic-bezier(0.46,0.03,0.52,0.96) forwards;
 		}
 	}
 	
@@ -65,5 +223,81 @@
 		display: inline-flex;
 		align-items: center;
 		line-height: 1;
+
+		&.mobile {
+			.button--inner { 
+				padding: var(--space-2xs) var(--space-xs);
+				font-size: var(--fs--1);
+			}
+
+			@media (min-width: $breakpoint-sm) {
+				display: none;
+			}
+		}
+
+		&.desktop {
+			display: none;
+
+			@media (min-width: $breakpoint-sm) {
+				display: inline-flex;
+				font-size: var(--fs--1);
+			}
+		}
+	}
+}
+
+@keyframes textHover {
+	0% {
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--special-hover-color-1) 0%,
+			var(--special-hover-color-1) 25%,
+			var(--special-hover-color-2) 25%,
+			var(--special-hover-color-2) 50%,
+			var(--special-hover-color-1) 50%,
+			var(--special-hover-color-1) 75%,
+			var(--special-hover-color-2) 75%,
+			var(--special-hover-color-2) 100%,
+		);
+	}
+	25% {
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--c-white) 0%,
+			var(--c-white) 25%,
+			var(--special-hover-color-1) 25%,
+			var(--special-hover-color-1) 50%,
+			var(--special-hover-color-2) 50%,
+			var(--special-hover-color-2) 75%,
+			var(--special-hover-color-1) 75%,
+			var(--special-hover-color-1) 100%,
+		);
+	}
+	50% {
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--c-white) 0%,
+			var(--c-white) 50%,
+			var(--special-hover-color-1) 50%,
+			var(--special-hover-color-1) 75%,
+			var(--special-hover-color-2) 75%,
+			var(--special-hover-color-2) 100%,
+		);
+	}
+	75% {
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--c-white) 0%,
+			var(--c-white) 75%,
+			var(--special-hover-color-1) 75%,
+			var(--special-hover-color-1) 100%,
+		);
+	}
+	100% {
+		background-image: radial-gradient(
+			circle at 50%,
+			var(--c-white) 0%,
+			var(--c-white) 100%,
+		);
 	}
 }

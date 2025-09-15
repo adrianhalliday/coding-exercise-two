@@ -5,7 +5,7 @@ import { scrollActiveRef } from '@/hooks/scrollActiveRef'
 import { wrapText } from '@/hooks/wrapText'
 import './TextImage.scss'
 
-type Theme = "navy" | "light-grey" | "light-green" | "yellow" | "white" | "pink";
+type Theme = "navy" | "light-grey" | "lime-green" | "yellow" | "white" | "paradise-pink";
 
 interface ComponentProps {
 	theme: Theme;
@@ -18,8 +18,8 @@ interface ComponentProps {
 	content: string;
 }
 
-export default function Hero({ 
-	theme = "light-green",
+export default function TextImage({ 
+	theme = "lime-green",
 	alignment = null,
 	image = {
 		sources: { base: "/assets/placeholder.webp" },
@@ -31,7 +31,7 @@ export default function Hero({
 	const scrollContainer = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		if (scrollActive && scrollContainer.current) {
-			// Forces reflow so animations trigger properly- hacky workaround in place of GSAP
+			// Forces reflow so animations trigger properly - hacky workaround in place of GSAP
 			scrollContainer.current.offsetHeight;
 			scrollContainer.current.classList.add('scroll-active');
 		}

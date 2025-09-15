@@ -1,4 +1,7 @@
 import '@/css/global.scss'
+import '@/css/typography.scss'
+import '@/css/variables.scss'
+
 import type { Metadata } from 'next'
 import { Header } from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
