@@ -1,3 +1,21 @@
+# Activity two.
+Take the design in the link below and create a response landing page, all images
+included in the Figma design to create the landing page and Lato Google Web Font
+should be used.
+
+It is up to you how far you go with the design but we’ll be looking at the following:
+— How responsiveness has been handled
+— User interaction states on elements
+— Has the page been coded in a way that it can be extended upon down the
+track
+— Any extra effects or polish on the final page
+
+To be clear, we do NOT require the end product to be pixel perfect to the design. We
+also won’t be going crazy with browser testing at this point. As long as it looks fine
+in Chrome and Edge, don’t spend much time going further than that.
+
+
+# Boilerplate Readme
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
